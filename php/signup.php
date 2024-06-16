@@ -26,7 +26,7 @@
                             $time = time();
                             $new_img_name = $time.$img_name;                            //adding cur time for uniqueness
                             if(move_uploaded_file($tmp_name,"images/".$new_img_name)){          //(name,destination)
-                                $ran_id = rand(time(), 100000000);
+                                $ran_id = rand(10000, 100000000);
                                 $status = "Active now";                         //once user logged in
                                 $encrypt_pass = password_hash($password,DEFAULT_PASSWORD);
                                 $insert_query = mysqli_query($conn, "INSERT INTO users (unique_id, fname, lname, email, password, img, status)
@@ -38,7 +38,7 @@
                                         $_SESSION['unique_id'] = $result['unique_id'];     //using this session we used user unique_id in other php file
                                         echo "success";
                                     }else{
-                                        echo "This email address not Exist!";
+                                        echo "This email address does not Exist!";
                                     }
                                 }else{
                                     echo "Something went wrong. Please try again!";
